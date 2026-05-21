@@ -3,6 +3,138 @@
    Complete Stylesheet
    ============================================================ */
 
+/* ═══════════════════════════════════════════════════════════
+   PRELOADER
+═══════════════════════════════════════════════════════════ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+/* The bordered square frame matching the logo */
+.preloader-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 72px) clamp(40px, 8vw, 96px);
+  border: 2px solid rgba(255,255,255,0.85);
+  border-radius: 8px;
+  width: min(480px, 88vw);
+  gap: 2px;
+  animation: frameReveal 0.5s ease forwards;
+}
+@keyframes frameReveal {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* MAHI'S */
+.preloader-mahis {
+  font-family: 'Barlow Condensed', 'Rajdhani', sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #fff;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: plFadeUp 0.5s ease 0.4s forwards;
+  margin-bottom: 2px;
+}
+
+/* CARZEE wordmark */
+.preloader-wordmark {
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: plFadeUp 0.6s ease 0.65s forwards;
+}
+.preloader-car {
+  font-family: 'Barlow Condensed', 'Rajdhani', sans-serif;
+  font-size: clamp(3.8rem, 14vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #39d353;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.preloader-zee {
+  font-family: 'Barlow Condensed', 'Rajdhani', sans-serif;
+  font-size: clamp(3.8rem, 14vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Tagline */
+.preloader-tagline {
+  font-family: 'Barlow Condensed', 'Rajdhani', sans-serif;
+  font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: rgba(255,255,255,0.9);
+  text-transform: capitalize;
+  opacity: 0;
+  animation: plFadeUp 0.5s ease 1s forwards;
+  margin-top: 4px;
+}
+
+/* Loading bar */
+.preloader-bar-wrap {
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+  margin-top: 28px;
+  overflow: hidden;
+  opacity: 0;
+  animation: plFadeUp 0.3s ease 1.15s forwards;
+}
+.preloader-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #39d353, #4de96a);
+  border-radius: 2px;
+  box-shadow: 0 0 12px rgba(57,211,83,0.6);
+  animation: plBar 1.6s cubic-bezier(0.4, 0, 0.2, 1) 1.2s forwards;
+}
+
+@keyframes plFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes plBar {
+  0%   { width: 0%; }
+  60%  { width: 75%; }
+  85%  { width: 90%; }
+  100% { width: 100%; }
+}
+
+
+
 /* ─── CSS CUSTOM PROPERTIES ─────────────────────────────────── */
 :root {
   --bg:           #181a1b;

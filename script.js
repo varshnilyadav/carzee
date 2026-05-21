@@ -6,6 +6,41 @@
 
 'use strict';
 
+/* ═══════════════════════════════════════════════════════════
+   0. PRELOADER — dismiss when fonts + page are ready
+═══════════════════════════════════════════════════════════ */
+(function initPreloader() {
+  const loader = document.getElementById('carzee-preloader');
+  if (!loader) return;
+
+  /* Minimum display time so the animation completes */
+  const MIN_MS = 2800;
+  const startTime = Date.now();
+
+  function dismiss() {
+    const elapsed  = Date.now() - startTime;
+    const remaining = Math.max(0, MIN_MS - elapsed);
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      /* Re-enable body scroll and trigger page-load opacity */
+      document.body.style.opacity = '1';
+      /* Remove from DOM after transition ends */
+      loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+    }, remaining);
+  }
+
+  /* Dismiss once page is fully loaded (fonts, images, etc.) */
+  if (document.readyState === 'complete') {
+    dismiss();
+  } else {
+    window.addEventListener('load', dismiss);
+    /* Fallback: dismiss after 4.5s no matter what */
+    setTimeout(dismiss, 4500);
+  }
+})();
+
+
+
 /* ─── HELPER: DOM QUERY ───────────────────────────────────── */
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
