@@ -1277,7 +1277,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto auto;
   gap: 12px;
 }
 .gallery-item {
